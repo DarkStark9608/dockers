@@ -1,20 +1,25 @@
+from operator import index
 import web
-render= web.template.render("/home/code/")
+render= web.template.render("templates")
 urls = (
-    '/(.*)', 'hello'
+    '/','home',
+    '/docker','docker',
+    '/ubuntu','ubuntu'
 )
 app = web.application(urls, globals())
 
-class hello:
-    def GET(self, name):
-        datos=None
-        
-        datos={
-      
-            "Palabra":"Palabra buscada",
-            "Significado":"Significado" ,
-            
-          }
-        return render.index(datos)
+class home:
+    def GET(self):
+        return render.index()
+
+class docker:
+    def GET(self):
+        return render.docker()
+
+class ubuntu:
+    def GET(self):
+        return render.ubuntu()
+
+
 if __name__ == "__main__":
     app.run()
